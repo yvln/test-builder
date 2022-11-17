@@ -44,7 +44,7 @@ const Drop = ({ body, children }) => {
     if (dropResult?.id) {
       setSelectedItemId(dropResult.id);
     }
-  }, [dropResult]);
+  }, [dropResult, setSelectedItemId]);
 
   return children({
     item,
