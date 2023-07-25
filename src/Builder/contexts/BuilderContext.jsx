@@ -58,6 +58,19 @@ export const BuilderProvider = ({ children, document, onChange }) => {
     [getPath, handleUpdateItem],
   );
 
+  const handleDeleteItem = useCallback(
+    ({ parentId, item }) =>
+      handleUpdateItem({
+        path: getPath(parentId),
+        updater: (parentItem) => {
+          parentItem.children = parentItem.children.filter(childItem => childItem.id !== item.id)
+
+          return parentItem;
+        },
+      }),
+    [getPath, handleUpdateItem],
+  );
+
   const handleUpdateSetting = useCallback(
     ({ id, settingKey, value }) => {
       handleUpdateItem({
@@ -125,6 +138,7 @@ export const BuilderProvider = ({ children, document, onChange }) => {
       selectedItemId,
 
       addItem: handleAddItem,
+      deleteItem: handleDeleteItem,
       updateSetting: handleUpdateSetting,
     }),
     [
@@ -140,6 +154,7 @@ export const BuilderProvider = ({ children, document, onChange }) => {
       selectedItemId,
 
       handleAddItem,
+      handleDeleteItem,
       handleUpdateSetting,
     ],
   );
