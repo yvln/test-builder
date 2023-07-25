@@ -93,7 +93,7 @@ const ButtonSettings = ({ item, onChange }) => {
         $width="100%"
       />
     </VerticalSetting>
-    <DeleteButton onClick={() => deleteItem({parentId: fullDocument.children[0].id, item})}>Delete</DeleteButton>
+    <DeleteButton onClick={() => deleteItem({ parentId: fullDocument.children[0].id, item })}>Delete</DeleteButton>
   </Wrapper>
 )};
 

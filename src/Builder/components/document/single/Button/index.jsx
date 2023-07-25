@@ -7,6 +7,7 @@ const Button = ({ item, onClick, designMode }) => (
     $attributes={item?.attributes}
     $designMode={designMode}
     onClick={onClick}
+    {...designMode & { "data-testid": item.id }}
   >
     <a
       href={item?.attributes.buttonLink}

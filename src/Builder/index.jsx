@@ -5,7 +5,7 @@ import { blankDocument } from './helpers/blankDocument';
 import { BuilderProvider } from './contexts/BuilderContext';
 import Layout from './Layout';
 
-const Builder = ({ components, onChange }) => {
+const Builder = ({ components, document, onChange }) => {
   const handleChange = ({ newDocument }) => {
     onChange?.({ newDocument });
   };
@@ -14,7 +14,7 @@ const Builder = ({ components, onChange }) => {
     <DndProvider backend={HTML5Backend}>
       <BuilderProvider
         components={components}
-        document={blankDocument}
+        document={document || blankDocument}
         onChange={handleChange}
       >
         <Layout />
