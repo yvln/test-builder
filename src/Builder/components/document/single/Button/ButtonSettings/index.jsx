@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { Description } from '../../../../ui/Description';
 import { HorizontalSetting } from '../../../../ui/HorizontalSetting';
 import { VerticalSetting } from '../../../../ui/VerticalSetting';
+import { useBuilderContext } from '../../../../../contexts/BuilderContext';
 
-const ButtonSettings = ({ item, onChange }) => (
+const ButtonSettings = ({ item, onChange }) => {
+  const { deleteItem, fullDocument } = useBuilderContext();
+
+  return (
   <Wrapper key={item.id}>
     <HorizontalSetting>
       <Description>Background color</Description>
@@ -89,10 +93,19 @@ const ButtonSettings = ({ item, onChange }) => (
         $width="100%"
       />
     </VerticalSetting>
+    <DeleteButton onClick={() => deleteItem({ parentId: fullDocument.children[0].id, item })}>Delete</DeleteButton>
   </Wrapper>
-);
+)};
 
 export default ButtonSettings;
+
+const DeleteButton = styled.button`
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: 7px 16px;
+`;
 
 const StyledInput = styled.input`
   width: ${({ $width }) => $width};
